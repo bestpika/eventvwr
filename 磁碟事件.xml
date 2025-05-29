@@ -1,0 +1,62 @@
+<ViewerConfig>
+  <QueryConfig>
+    <QueryParams>
+      <Simple>
+        <Channel>
+          Microsoft-Windows-Disk/Operational,Microsoft-Windows-Storage-Disk/Admin,Microsoft-Windows-Storage-Disk/Analytic,Microsoft-Windows-Storage-Disk/Debug,Microsoft-Windows-Storage-Disk/Diagnose,Microsoft-Windows-Storage-Disk/Operational,System,Application</Channel>
+        <RelativeTimeInfo>0</RelativeTimeInfo>
+        <Source>Chkdsk,disk,Microsoft-Windows-Disk,DiskQuota</Source>
+        <BySource>True</BySource>
+      </Simple>
+    </QueryParams>
+    <QueryNode>
+      <Name>磁碟事件</Name>
+      <QueryList>
+        <Query Id="0" Path="Microsoft-Windows-Disk/Operational">
+          <Select Path="Microsoft-Windows-Disk/Operational">*[System[Provider[@Name='Chkdsk' or
+            @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Microsoft-Windows-Storage-Disk/Admin">*[System[Provider[@Name='Chkdsk' or
+            @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Microsoft-Windows-Storage-Disk/Analytic">*[System[Provider[@Name='Chkdsk' or
+            @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Microsoft-Windows-Storage-Disk/Debug">*[System[Provider[@Name='Chkdsk' or
+            @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Microsoft-Windows-Storage-Disk/Diagnose">*[System[Provider[@Name='Chkdsk' or
+            @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Microsoft-Windows-Storage-Disk/Operational">*[System[Provider[@Name='Chkdsk'
+            or @Name='disk' or @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="System">*[System[Provider[@Name='Chkdsk' or @Name='disk' or
+            @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+          <Select Path="Application">*[System[Provider[@Name='Chkdsk' or @Name='disk' or
+            @Name='Microsoft-Windows-Disk' or @Name='DiskQuota']]]</Select>
+        </Query>
+      </QueryList>
+    </QueryNode>
+  </QueryConfig>
+  <ResultsConfig>
+    <Columns>
+      <Column Name="等級" Type="System.String" Path="Event/System/Level" Visible="">200</Column>
+      <Column Name="關鍵字" Type="System.String" Path="Event/System/Keywords">100</Column>
+      <Column Name="日期和時間" Type="System.DateTime" Path="Event/System/TimeCreated/@SystemTime"
+        Visible="">300</Column>
+      <Column Name="來源" Type="System.String" Path="Event/System/Provider/@Name" Visible="">200</Column>
+      <Column Name="事件識別碼" Type="System.UInt32" Path="Event/System/EventID" Visible="">200</Column>
+      <Column Name="工作類別" Type="System.String" Path="Event/System/Task" Visible="">200</Column>
+      <Column Name="使用者" Type="System.String" Path="Event/System/Security/@UserID">50</Column>
+      <Column Name="操作代碼" Type="System.String" Path="Event/System/Opcode">100</Column>
+      <Column Name="記錄" Type="System.String" Path="Event/System/Channel">100</Column>
+      <Column Name="電腦" Type="System.String" Path="Event/System/Computer">200</Column>
+      <Column Name="處理程序識別碼" Type="System.UInt32" Path="Event/System/Execution/@ProcessID">100</Column>
+      <Column Name="執行緒識別碼" Type="System.UInt32" Path="Event/System/Execution/@ThreadID">100</Column>
+      <Column Name="處理器識別碼" Type="System.UInt32" Path="Event/System/Execution/@ProcessorID">100</Column>
+      <Column Name="工作階段識別碼" Type="System.UInt32" Path="Event/System/Execution/@SessionID">100</Column>
+      <Column Name="核心程式的時間" Type="System.UInt32" Path="Event/System/Execution/@KernelTime">100</Column>
+      <Column Name="使用者名稱" Type="System.UInt32" Path="Event/System/Execution/@UserTime">100</Column>
+      <Column Name="處理器時間" Type="System.UInt32" Path="Event/System/Execution/@ProcessorTime">100</Column>
+      <Column Name="相互關聯識別碼" Type="System.Guid" Path="Event/System/Correlation/@ActivityID">100</Column>
+      <Column Name="相對相互關聯識別碼" Type="System.Guid" Path="Event/System/Correlation/@RelatedActivityID">
+        200</Column>
+      <Column Name="事件來源名稱" Type="System.String" Path="Event/System/Provider/@EventSourceName">200</Column>
+    </Columns>
+  </ResultsConfig>
+</ViewerConfig>

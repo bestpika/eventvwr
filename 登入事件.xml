@@ -1,0 +1,51 @@
+<ViewerConfig>
+  <QueryConfig>
+    <QueryParams>
+      <Simple>
+        <RelativeTimeInfo>0</RelativeTimeInfo>
+        <BySource>True</BySource>
+        <Channel>Security</Channel>
+        <Source>Microsoft-Windows-Security-Auditing</Source>
+        <Level>1,2,3,4,0,5</Level>
+        <Task>12544,12545,13824</Task>
+      </Simple>
+    </QueryParams>
+    <QueryNode>
+      <Name LanguageNeutralValue="登入事件">登入事件</Name>
+      <QueryList>
+        <Query Id="0" Path="Security">
+          <Select Path="Security">*[System[Provider[@Name='Microsoft-Windows-Security-Auditing'] and
+            (Level=1 or Level=2 or Level=3 or Level=4 or Level=0 or Level=5) and ( Task = 12544 or
+            Task = 12545
+            or Task = 13824 )]]</Select>
+        </Query>
+      </QueryList>
+    </QueryNode>
+  </QueryConfig>
+  <ResultsConfig>
+    <Columns>
+      <Column Name="等級" Type="System.String" Path="Event/System/Level" Visible="">200</Column>
+      <Column Name="關鍵字" Type="System.String" Path="Event/System/Keywords">100</Column>
+      <Column Name="日期和時間" Type="System.DateTime" Path="Event/System/TimeCreated/@SystemTime"
+        Visible="">300</Column>
+      <Column Name="來源" Type="System.String" Path="Event/System/Provider/@Name" Visible="">200</Column>
+      <Column Name="事件識別碼" Type="System.UInt32" Path="Event/System/EventID" Visible="">200</Column>
+      <Column Name="工作類別" Type="System.String" Path="Event/System/Task" Visible="">200</Column>
+      <Column Name="使用者" Type="System.String" Path="Event/System/Security/@UserID">50</Column>
+      <Column Name="操作代碼" Type="System.String" Path="Event/System/Opcode">100</Column>
+      <Column Name="記錄" Type="System.String" Path="Event/System/Channel">100</Column>
+      <Column Name="電腦" Type="System.String" Path="Event/System/Computer">200</Column>
+      <Column Name="處理程序識別碼" Type="System.UInt32" Path="Event/System/Execution/@ProcessID">100</Column>
+      <Column Name="執行緒識別碼" Type="System.UInt32" Path="Event/System/Execution/@ThreadID">100</Column>
+      <Column Name="處理器識別碼" Type="System.UInt32" Path="Event/System/Execution/@ProcessorID">100</Column>
+      <Column Name="工作階段識別碼" Type="System.UInt32" Path="Event/System/Execution/@SessionID">100</Column>
+      <Column Name="核心程式的時間" Type="System.UInt32" Path="Event/System/Execution/@KernelTime">100</Column>
+      <Column Name="使用者名稱" Type="System.UInt32" Path="Event/System/Execution/@UserTime">100</Column>
+      <Column Name="處理器時間" Type="System.UInt32" Path="Event/System/Execution/@ProcessorTime">100</Column>
+      <Column Name="相互關聯識別碼" Type="System.Guid" Path="Event/System/Correlation/@ActivityID">100</Column>
+      <Column Name="相對相互關聯識別碼" Type="System.Guid" Path="Event/System/Correlation/@RelatedActivityID">
+        200</Column>
+      <Column Name="事件來源名稱" Type="System.String" Path="Event/System/Provider/@EventSourceName">200</Column>
+    </Columns>
+  </ResultsConfig>
+</ViewerConfig>
